@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Success{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Patient data has been successfully saved!</h2>
+    <a href="{% url 'add_patient' %}" class="btn btn-secondary">Add another patient</a>
+</div>
+{% endblock %}
