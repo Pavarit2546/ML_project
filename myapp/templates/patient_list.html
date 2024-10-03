@@ -16,6 +16,7 @@
                 <th>Blood Sugar</th>
                 <th>Body Temp</th>
                 <th>Heart Rate</th>
+                <th>Rick Level</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,12 @@
                 <td>{{ patient.blood_sugar }}</td>
                 <td>{{ patient.body_temp }}</td>
                 <td>{{ patient.heart_rate }}</td>
+                <td>{{ patient.risk_level }}</td>
+                <td>
+                    <a href="{% url 'delete_patient' patient.id %}" class="text-danger" onclick="return confirm('คุณต้องการลบข้อมูลผู้ป่วยคนนี้หรือไม่?');">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

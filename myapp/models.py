@@ -9,7 +9,8 @@ class Patient(models.Model):
     blood_sugar = models.FloatField()  # Blood glucose levels (BS)
     body_temp = models.FloatField()  # Body Temperature
     heart_rate = models.FloatField()  # Heart Rate
-
+    risk_level = models.CharField(max_length=50, null=True, blank=True)
+    
     def __str__(self):
         return f"{self.first_name} {self.last_name} - Age: {self.age}"
 

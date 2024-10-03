@@ -5,6 +5,32 @@
 {% block content %}
 <div class="container mt-5">
     <h2>Patient data has been successfully saved!</h2>
+
+    <!-- แสดงข้อมูลผู้ป่วยที่เพิ่งกรอก -->
+    <h3>Patient Information:</h3>
+    <p><b>First Name:</b> {{ patient.first_name }}</p>
+    <p><b>Last Name:</b> {{ patient.last_name }}</p>
+    <p><b>Age:</b> {{ patient.age }}</p>
+    <p><b>Systolic BP:</b> {{ patient.systolic_bp }}</p>
+    <p><b>Diastolic BP:</b> {{ patient.diastolic_bp }}</p>
+    <p><b>Blood Sugar:</b> {{ patient.blood_sugar }}</p>
+    <p><b>Body Temp:</b> {{ patient.body_temp }}</p>
+    <p><b>Heart Rate:</b> {{ patient.heart_rate }}</p>
+
+    <!-- แสดงผลลัพธ์การทำนาย Risk Level -->
+    {% if result %}
+    <h1><b>Risk Level Prediction:</b></h1>
+        {% if result == "low risk" %}
+            <h1 style="color:green; font-size: 50px; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;"><b>{{ result }}</b></h1>
+        {% elif result == "mid risk" %}
+            <h1 style="color:yellow; font-size: 50px; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;"><b>{{ result }}</b></h1>
+        {% elif result == "high risk" %}
+            <h1 style="color:red; font-size: 50px; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;"><b>{{ result }}</b></h1>
+        {% else %}
+            <h1><b>{{ result }}</b></h1>
+        {% endif %}
+    {% endif %}
+    
     <a href="{% url 'add_patient' %}" class="btn btn-secondary">Add another patient</a>
 </div>
 {% endblock %}
