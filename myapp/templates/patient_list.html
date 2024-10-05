@@ -4,41 +4,64 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2>Patient List</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
-                <th>Systolic BP</th>
-                <th>Diastolic BP</th>
-                <th>Blood Sugar</th>
-                <th>Body Temp</th>
-                <th>Heart Rate</th>
-                <th>Rick Level</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for patient in patients %}
-            <tr>
-                <td>{{ patient.first_name }}</td>
-                <td>{{ patient.last_name }}</td>
-                <td>{{ patient.age }}</td>
-                <td>{{ patient.systolic_bp }}</td>
-                <td>{{ patient.diastolic_bp }}</td>
-                <td>{{ patient.blood_sugar }}</td>
-                <td>{{ patient.body_temp }}</td>
-                <td>{{ patient.heart_rate }}</td>
-                <td>{{ patient.risk_level }}</td>
-                <td>
-                    <a href="{% url 'delete_patient' patient.id %}" class="text-danger" onclick="return confirm('คุณต้องการลบข้อมูลผู้ป่วยคนนี้หรือไม่?');">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="row justify-content-center">
+        <div class="col-md-20">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center">รายการผู้ป่วยทั้งหมด</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover table-bordered text-center">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ชื่อจริง</th>
+                                <th>นามสกุล</th>
+                                <th>อายุ</th>
+                                <th>ความดันโลหิตตัวบน</th>
+                                <th>ความดันโลหิตตัวล่าง</th>
+                                <th>ระดับน้ำตาลในเลือด</th>
+                                <th>อุณหภูมิร่างกาย</th>
+                                <th>อัตราการเต้นของหัวใจ</th>
+                                <th>ระดับความเสี่ยง</th>
+                                <th>การจัดการ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for patient in patients %}
+                            <tr>
+                                <td>{{ patient.first_name }}</td>
+                                <td>{{ patient.last_name }}</td>
+                                <td>{{ patient.age }}</td>
+                                <td>{{ patient.systolic_bp }}</td>
+                                <td>{{ patient.diastolic_bp }}</td>
+                                <td>{{ patient.blood_sugar }}</td>
+                                <td>{{ patient.body_temp }}</td>
+                                <td>{{ patient.heart_rate }}</td>
+                                <td>
+                                    <span class="badge 
+                                        {% if patient.risk_level == 'low risk' %}badge-success
+                                        {% elif patient.risk_level == 'mid risk' %}badge-warning
+                                        {% else %}badge-danger{% endif %}">
+                                        {{ patient.risk_level }}
+                                    </span>
+
+                                </td>
+                                <td>
+                                    <a href="{% url 'delete_patient' patient.id %}" class="text-danger" onclick="return confirm('คุณต้องการลบข้อมูลผู้ป่วยคนนี้หรือไม่?');">
+                                        <i class="fas fa-trash"></i> ลบ
+                                    </a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="10" class="text-center">ไม่พบข้อมูลผู้ป่วย</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

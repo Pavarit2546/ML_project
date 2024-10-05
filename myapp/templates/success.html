@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %}Success{% endblock %}
+{% block title %}สำเร็จ{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
-    <h2>Patient data has been successfully saved!</h2>
+    <h2>ข้อมูลผู้ป่วยถูกบันทึกเรียบร้อยแล้ว!</h2>
 
     <!-- แสดงข้อมูลผู้ป่วยที่เพิ่งกรอก -->
-    <h3>Patient Information:</h3>
-    <p><b>First Name:</b> {{ patient.first_name }}</p>
-    <p><b>Last Name:</b> {{ patient.last_name }}</p>
-    <p><b>Age:</b> {{ patient.age }}</p>
-    <p><b>Systolic BP:</b> {{ patient.systolic_bp }}</p>
-    <p><b>Diastolic BP:</b> {{ patient.diastolic_bp }}</p>
-    <p><b>Blood Sugar:</b> {{ patient.blood_sugar }}</p>
-    <p><b>Body Temp:</b> {{ patient.body_temp }}</p>
-    <p><b>Heart Rate:</b> {{ patient.heart_rate }}</p>
+    <h3>ข้อมูลผู้ป่วย:</h3>
+    <p><b>ชื่อจริง:</b> {{ patient.first_name }}</p>
+    <p><b>นามสกุล:</b> {{ patient.last_name }}</p>
+    <p><b>อายุ:</b> {{ patient.age }}</p>
+    <p><b>ความดันโลหิตขณะที่หัวใจบีบตัว:</b> {{ patient.systolic_bp }}</p>
+    <p><b>ความดันโลหิตขณะที่หัวใจคลายตัว:</b> {{ patient.diastolic_bp }}</p>
+    <p><b>ระดับน้ำตาลในเลือด:</b> {{ patient.blood_sugar }}</p>
+    <p><b>อุณหภูมิร่างกาย:</b> {{ patient.body_temp }}</p>
+    <p><b>อัตราการเต้นของหัวใจ:</b> {{ patient.heart_rate }}</p>
 
     <!-- แสดงผลลัพธ์การทำนาย Risk Level -->
     {% if result %}
-    <h1><b>Risk Level Prediction:</b></h1>
+    <h1><b>ทำนายระดับความเสี่ยง:</b></h1>
         {% if result == "low risk" %}
             <h1 style="color:green; font-size: 50px; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;"><b>{{ result }}</b></h1>
         {% elif result == "mid risk" %}
@@ -31,6 +31,6 @@
         {% endif %}
     {% endif %}
     
-    <a href="{% url 'add_patient' %}" class="btn btn-secondary">Add another patient</a>
+    <a href="{% url 'add_patient' %}" class="btn btn-secondary">เพิ่มข้อมูลคนป่วยคนอื่น</a>
 </div>
 {% endblock %}

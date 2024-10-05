@@ -6,12 +6,12 @@ class PatientForm(forms.ModelForm):
         model = Patient
         fields = ['first_name', 'last_name', 'age', 'systolic_bp', 'diastolic_bp', 'blood_sugar', 'body_temp', 'heart_rate']
         widgets = {
-            'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
-            'age': forms.NumberInput(attrs={'placeholder': 'Age'}),
-            'systolic_bp': forms.NumberInput(attrs={'placeholder': 'Systolic BP'}),
-            'diastolic_bp': forms.NumberInput(attrs={'placeholder': 'Diastolic BP'}),
-            'blood_sugar': forms.NumberInput(attrs={'placeholder': 'Blood Sugar Level'}),
-            'body_temp': forms.NumberInput(attrs={'placeholder': 'Body Temperature'}),
-            'heart_rate': forms.NumberInput(attrs={'placeholder': 'Heart Rate'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'ชื่อจริง', 'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'นามสกุล', 'class': 'form-control'}),
+            'age': forms.NumberInput(attrs={'placeholder': 'อายุเป็นปี', 'class': 'form-control'}),
+            'systolic_bp': forms.NumberInput(attrs={'placeholder': 'หน่วย: mmHg', 'class': 'form-control'}),
+            'diastolic_bp': forms.NumberInput(attrs={'placeholder': 'หน่วย: mmHg', 'class': 'form-control'}),
+            'blood_sugar': forms.NumberInput(attrs={'placeholder': 'หน่วย mg/dL', 'class': 'form-control'}),
+            'body_temp': forms.NumberInput(attrs={'placeholder': 'หน่วย: °F', 'class': 'form-control'}),
+            'heart_rate': forms.NumberInput(attrs={'placeholder': 'หน่วย: ครั้งต่อนาที หรือ bpm - beats per minute', 'class': 'form-control'}),
         }

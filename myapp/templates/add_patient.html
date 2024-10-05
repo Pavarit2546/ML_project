@@ -1,17 +1,108 @@
 {% extends 'base.html' %}
 
-{% block title %}Add Patient{% endblock %}
+{% block title %}add patient{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2>Add New Patient</h2>
-    <form method="POST" class="mt-4">
-        {% csrf_token %}
-        <div class="form-group">
-            {{ form.as_p }}
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+        background-image: url('BG.png');
+    }
+
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('BG.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.5;
+        z-index: -1;
+    }
+
+    .centered-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+    }
+
+    .form-container {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        /* มุมโค้ง */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        width: 100%;
+        max-width: 800px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+</style>
+<div class="container centered-container">
+    <div class="form-container">
+        <h2 class="text-center">เพิ่มผู้ป่วยใหม่</h2>
+        <form method="POST" class="mt-4">
+            {% csrf_token %}
+            <div class="form-group row">
+                <label for="{{ form.first_name.id_for_label }}" class="col-sm-4 col-form-label">ชื่อจริง</label>
+                <div class="col-sm-8">
+                    {{ form.first_name }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="{{ form.last_name.id_for_label }}" class="col-sm-4 col-form-label">นามสกุล</label>
+                <div class="col-sm-8">
+                    {{ form.last_name }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="{{ form.age.id_for_label }}" class="col-sm-4 col-form-label">อายุ</label>
+                <div class="col-sm-8">
+                    {{ form.age }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="{{ form.systolic_bp.id_for_label }}" class="col-sm-4 col-form-label">ความดันโลหิตขณะที่หัวใจบีบตัว</label>
+                <div class="col-sm-8">
+                    {{ form.systolic_bp }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="{{ form.diastolic_bp.id_for_label }}" class="col-sm-4 col-form-label">ความดันโลหิตขณะที่หัวใจคลายตัว</label>
+                <div class="col-sm-8">
+                    {{ form.diastolic_bp }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="{{ form.blood_sugar.id_for_label }}" class="col-sm-4 col-form-label">ระดับน้ำตาลในเลือด</label>
+                <div class="col-sm-8">
+                    {{ form.blood_sugar }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="{{ form.body_temp.id_for_label }}" class="col-sm-4 col-form-label">อุณหภูมิร่างกาย</label>
+                <div class="col-sm-8">
+                    {{ form.body_temp }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="{{ form.heart_rate.id_for_label }}" class="col-sm-4 col-form-label">อัตราการเต้นของหัวใจ</label>
+                <div class="col-sm-8">
+                    {{ form.heart_rate }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">ทำนาย</button>
+        </form>
+    </div>
 </div>
 {% endblock %}
