@@ -3,34 +3,87 @@
 {% block title %}สำเร็จ{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2>ข้อมูลผู้ป่วยถูกบันทึกเรียบร้อยแล้ว!</h2>
+<style>
+    body {
+        font-family: 'Pridi', sans-serif;
+    }
 
-    <!-- แสดงข้อมูลผู้ป่วยที่เพิ่งกรอก -->
-    <h3>ข้อมูลผู้ป่วย:</h3>
-    <p><b>ชื่อจริง:</b> {{ patient.first_name }}</p>
-    <p><b>นามสกุล:</b> {{ patient.last_name }}</p>
-    <p><b>อายุ:</b> {{ patient.age }}</p>
-    <p><b>ความดันโลหิตขณะที่หัวใจบีบตัว:</b> {{ patient.systolic_bp }}</p>
-    <p><b>ความดันโลหิตขณะที่หัวใจคลายตัว:</b> {{ patient.diastolic_bp }}</p>
-    <p><b>ระดับน้ำตาลในเลือด:</b> {{ patient.blood_sugar }}</p>
-    <p><b>อุณหภูมิร่างกาย:</b> {{ patient.body_temp }}</p>
-    <p><b>อัตราการเต้นของหัวใจ:</b> {{ patient.heart_rate }}</p>
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        margin-top: 10px;
+        background-color: #f8f9fa;
+    }
 
-    <!-- แสดงผลลัพธ์การทำนาย Risk Level -->
-    {% if result %}
-    <h1><b>ทำนายระดับความเสี่ยง:</b></h1>
+    h1 {
+        font-size: 50px;
+        text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+    }
+    h3 {
+        padding-top: 10px;
+    }
+    .risk-text {
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 80vh;
+    }
+
+    .btn-secondary {
+        margin-top: 20px;
+    }
+
+    .text-left {
+        text-align: left;
+        padding-left: 5px;
+        margin: 5px;
+    }
+    .text-head {
+        padding-top: 20px;
+        text-align: center;
+    }
+</style>
+
+<div class="container">
+    <div class="card">
+        <h2 class="text-center text-success">ข้อมูลผู้ป่วยถูกบันทึกเรียบร้อยแล้ว!</h2>
+
+        <!-- แสดงข้อมูลผู้ป่วยที่เพิ่งกรอก -->
+        <h3 class="text-head">ข้อมูลผู้ป่วย</h3>
+        <p class="text-left"><b>ชื่อจริง:</b> {{ patient.first_name }}</p>
+        <p class="text-left"><b>นามสกุล:</b> {{ patient.last_name }}</p>
+        <p class="text-left"><b>อายุ:</b> {{ patient.age }} ปี</p>
+        <p class="text-left"><b>ความดันโลหิตขณะที่หัวใจบีบตัว:</b> {{ patient.systolic_bp }} mmHg</p>
+        <p class="text-left"><b>ความดันโลหิตขณะที่หัวใจคลายตัว:</b> {{ patient.diastolic_bp }} mmHg</p>
+        <p class="text-left"><b>ระดับน้ำตาลในเลือด:</b> {{ patient.blood_sugar }} mg/dL</p>
+        <p class="text-left"><b>อุณหภูมิร่างกาย:</b> {{ patient.body_temp }} °F</p>
+        <p class="text-left"><b>อัตราการเต้นของหัวใจ:</b> {{ patient.heart_rate }} bpm</p>
+
+        <!-- แสดงผลลัพธ์การทำนาย Risk Level -->
+        {% if result %}
+        <h3 class="text-center">ทำนายระดับความเสี่ยง:</h3>
         {% if result == "low risk" %}
-            <h1 style="color:green; font-size: 50px; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;"><b>{{ result }}</b></h1>
+        <h1 class="risk-text text-success text-center">{{ result }}</h1>
         {% elif result == "mid risk" %}
-            <h1 style="color:yellow; font-size: 50px; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;"><b>{{ result }}</b></h1>
+        <h1 class="risk-text text-warning text-center">{{ result }}</h1>
         {% elif result == "high risk" %}
-            <h1 style="color:red; font-size: 50px; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;"><b>{{ result }}</b></h1>
+        <h1 class="risk-text text-danger text-center">{{ result }}</h1>
         {% else %}
-            <h1><b>{{ result }}</b></h1>
+        <h1 class="text-center">{{ result }}</h1>
         {% endif %}
-    {% endif %}
-    
-    <a href="{% url 'add_patient' %}" class="btn btn-secondary">เพิ่มข้อมูลคนป่วยคนอื่น</a>
+        {% endif %}
+
+        <div class="text-center">
+            <a href="{% url 'add_patient' %}" class="btn btn-secondary">เพิ่มข้อมูลคนป่วยคนอื่น</a>
+        </div>
+    </div>
 </div>
+
 {% endblock %}

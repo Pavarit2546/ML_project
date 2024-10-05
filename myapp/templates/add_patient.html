@@ -4,12 +4,14 @@
 
 {% block content %}
 <style>
+
     body {
         margin: 0;
         padding: 0;
         height: 100vh;
         overflow: hidden;
         background-image: url('BG.png');
+        font-family: 'Pridi', sans-serif;
     }
 
     body::before {
@@ -30,7 +32,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 90vh;
+        height: 80vh;
     }
 
     .form-container {
@@ -47,10 +49,20 @@
     .form-group {
         margin-bottom: 15px;
     }
+    h1 {
+        text-align: center;
+        padding: 10px;
+        font-weight: bold;
+    }
+    h4 {
+        font-weight: bold;
+    }
 </style>
+<h1>โปรแกรมคาดการณ์ความเสี่ยงครรภ์ระหว่างการตั้งครรภ์</h1>
 <div class="container centered-container">
+    
     <div class="form-container">
-        <h2 class="text-center">เพิ่มผู้ป่วยใหม่</h2>
+        <h4 class="text-center">เพิ่มผู้ป่วยใหม่</h4>
         <form method="POST" class="mt-4">
             {% csrf_token %}
             <div class="form-group row">
